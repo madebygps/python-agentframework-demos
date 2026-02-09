@@ -1,12 +1,13 @@
 <!--
 ---
 name: Python Agent Framework Demos
-description: Collection of Python examples for Microsoft Agent Framework using GitHub Models or Azure OpenAI.
+description: Collection of Python examples for Microsoft Agent Framework using GitHub Models or Azure AI Foundry.
 languages:
 - python
 products:
 - azure-openai
 - azure
+- ai-services
 page_type: sample
 urlFragment: python-agentframework-demos
 ---
@@ -16,7 +17,7 @@ urlFragment: python-agentframework-demos
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://codespaces.new/Azure-Samples/python-agentframework-demos)
 [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/python-agentframework-demos)
 
-This repository provides examples of [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/) using LLMs from [GitHub Models](https://github.com/marketplace/models). Those models are free to use for anyone with a GitHub account, up to a [daily rate limit](https://docs.github.com/github-models/prototyping-with-ai-models#rate-limits).
+This repository provides examples of [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/) using LLMs from [GitHub Models](https://github.com/marketplace/models), [Azure AI Foundry](https://learn.microsoft.com/azure/ai-foundry/), or other model providers. GitHub Models are free to use for anyone with a GitHub account, up to a [daily rate limit](https://docs.github.com/github-models/prototyping-with-ai-models#rate-limits).
 
 * [Getting started](#getting-started)
   * [GitHub Codespaces](#github-codespaces)
@@ -24,9 +25,8 @@ This repository provides examples of [Microsoft Agent Framework](https://learn.m
   * [Local environment](#local-environment)
 * [Configuring model providers](#configuring-model-providers)
   * [Using GitHub Models](#using-github-models)
-  * [Using Azure OpenAI models](#using-azure-openai-models)
+  * [Using Azure AI Foundry models](#using-azure-ai-foundry-models)
   * [Using OpenAI.com models](#using-openaicom-models)
-  * [Using Ollama models](#using-ollama-models)
 * [Running the Python examples](#running-the-python-examples)
 * [Resources](#resources)
 
@@ -87,7 +87,7 @@ A related option is VS Code Dev Containers, which will open the project in your 
 
 ## Configuring model providers
 
-These examples can be run with Azure OpenAI account, OpenAI.com, local Ollama server, or GitHub models, depending on the environment variables you set. All the scripts reference the environment variables from a `.env` file, and an example `.env.sample` file is provided. Host-specific instructions are below.
+These examples can be run with Azure AI Foundry, OpenAI.com, or GitHub Models, depending on the environment variables you set. All the scripts reference the environment variables from a `.env` file, and an example `.env.sample` file is provided. Host-specific instructions are below.
 
 ## Using GitHub Models
 
@@ -111,11 +111,11 @@ If you want to run the scripts locally, you need to set up the `GITHUB_TOKEN` en
 
 10. Optionally, you can use a model other than "gpt-4o" by setting the `GITHUB_MODEL` environment variable. Use a model that supports function calling, such as: `gpt-5`, `gpt-5-mini`, `gpt-4o`, `gpt-4o-mini`, `o3-mini`, `AI21-Jamba-1.5-Large`, `AI21-Jamba-1.5-Mini`, `Codestral-2501`, `Cohere-command-r`, `Ministral-3B`, `Mistral-Large-2411`, `Mistral-Nemo`, `Mistral-small`
 
-## Using Azure OpenAI models
+## Using Azure AI Foundry models
 
-You can run all examples in this repository using GitHub Models. If you want to run the examples using models from Azure OpenAI instead, you need to provision the Azure AI resources, which will incur costs.
+You can run all examples in this repository using GitHub Models. If you want to run the examples using models from Azure AI Foundry instead, you need to provision the Azure AI resources, which will incur costs.
 
-This project includes infrastructure as code (IaC) to provision Azure OpenAI deployments of "gpt-4o" and "text-embedding-3-large". The IaC is defined in the `infra` directory and uses the Azure Developer CLI to provision the resources.
+This project includes infrastructure as code (IaC) to provision Azure OpenAI deployments of "gpt-5-mini" and "text-embedding-3-large" via Azure AI Foundry. The IaC is defined in the `infra` directory and uses the Azure Developer CLI to provision the resources.
 
 1. Make sure the [Azure Developer CLI (azd)](https://aka.ms/install-azd) is installed.
 
@@ -160,31 +160,6 @@ This project includes infrastructure as code (IaC) to provision Azure OpenAI dep
     API_HOST=openai
     OPENAI_API_KEY=your_openai_api_key
     OPENAI_MODEL=gpt-4o-mini
-    ```
-
-## Using Ollama models
-
-1. Install [Ollama](https://ollama.com/) and follow the instructions to set it up on your local machine.
-2. Pull a model, for example:
-
-    ```shell
-    ollama pull qwen3:30b
-    ```
-
-    Note that most models do not support tool calling to the extent required by agents frameworks, so choose a model accordingly.
-
-3. Create a `.env` file by copying the `.env.sample` file and updating it with your Ollama endpoint and model name.
-
-    ```bash
-    cp .env.sample .env
-    ```
-
-4. Update the `.env` file with your Ollama endpoint and model name (any model you've pulled):
-
-    ```bash
-    API_HOST=ollama
-    OLLAMA_ENDPOINT=http://localhost:11434/v1
-    OLLAMA_MODEL=llama3.1
     ```
 
 ## Running the Python examples

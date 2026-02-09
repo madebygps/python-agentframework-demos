@@ -14,16 +14,16 @@
     "runningOnGitHub": {
       "value": "${GITHUB_ACTIONS}"
     },
-    "gptModelName": {
+    "azureOpenaiChatModel": {
       "value": "${AZURE_OPENAI_CHAT_MODEL}"
     },
-    "gptModelVersion": {
+    "azureOpenaiChatModelVersion": {
       "value": "${AZURE_OPENAI_CHAT_MODEL_VERSION}"
     },
-    "gptDeploymentName": {
+    "azureOpenaiChatDeployment": {
       "value": "${AZURE_OPENAI_CHAT_DEPLOYMENT}"
     },
-    "gptDeploymentCapacity": {
+    "azureOpenaiChatDeploymentCapacity": {
       "value": "${AZURE_OPENAI_CHAT_DEPLOYMENT_CAPACITY}"
     }
   }

@@ -41,37 +41,37 @@ param environmentName string
 param location string
 
 @description('Name of the GPT model to deploy')
-param gptModelName string = 'gpt-5-mini'
+param azureOpenaiChatModel string = 'gpt-5-mini'
 
 @description('Version of the GPT model to deploy')
 // See version availability in this table:
 // https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#models-by-deployment-type
-param gptModelVersion string = '2025-08-07'
+param azureOpenaiChatModelVersion string = '2025-08-07'
 
 @description('Name of the model deployment (can be different from the model name)')
-param gptDeploymentName string = 'gpt-5-mini'
+param azureOpenaiChatDeployment string = 'gpt-5-mini'
 
 @description('Capacity of the GPT deployment')
 // You can increase this, but capacity is limited per model/region, so you will get errors if you go over
 // https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
-param gptDeploymentCapacity int = 30
+param azureOpenaiChatDeploymentCapacity int = 30
 
 
 @description('Name of the text embedding model to deploy')
-param embeddingModelName string = 'text-embedding-3-large'
+param azureOpenaiEmbeddingModel string = 'text-embedding-3-large'
 
 @description('Version of the text embedding model to deploy')
 // See version availability in this table:
 // https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=python-secure%2Cglobal-standard%2Cstandard-chat-completions#models-by-deployment-type
-param embeddingModelVersion string = '1'
+param azureOpenaiEmbeddingModelVersion string = '1'
 
 @description('Name of the model deployment (can be different from the model name)')
-param embeddingDeploymentName string = 'text-embedding-3-large'
+param azureOpenaiEmbeddingDeployment string = 'text-embedding-3-large'
 
 @description('Capacity of the text embedding deployment')
 // You can increase this, but capacity is limited per model/region, so you will get errors if you go over
 // https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
-param embeddingDeploymentCapacity int = 30
+param azureOpenaiEmbeddingDeploymentCapacity int = 30
 
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
@@ -110,27 +110,27 @@ module openAi 'br/public:avm/res/cognitive-services/account:0.7.1' = {
     }
     deployments: [
       {
-        name: gptDeploymentName
+        name: azureOpenaiChatDeployment
         model: {
           format: 'OpenAI'
-          name: gptModelName
-          version: gptModelVersion
+          name: azureOpenaiChatModel
+          version: azureOpenaiChatModelVersion
         }
         sku: {
           name: 'GlobalStandard'
-          capacity: gptDeploymentCapacity
+          capacity: azureOpenaiChatDeploymentCapacity
         }
       }
       {
-        name: embeddingDeploymentName
+        name: azureOpenaiEmbeddingDeployment
         model: {
           format: 'OpenAI'
-          name: embeddingModelName
-          version: embeddingModelVersion
+          name: azureOpenaiEmbeddingModel
+          version: azureOpenaiEmbeddingModelVersion
         }
         sku: {
           name: 'GlobalStandard'
-          capacity: embeddingDeploymentCapacity
+          capacity: azureOpenaiEmbeddingDeploymentCapacity
         }
       }
     ]
@@ -150,7 +150,7 @@ output AZURE_RESOURCE_GROUP string = resourceGroup.name
 
 // Specific to Azure OpenAI
 output AZURE_OPENAI_ENDPOINT string = openAi.outputs.endpoint
-output AZURE_OPENAI_CHAT_MODEL string = gptModelName
-output AZURE_OPENAI_CHAT_DEPLOYMENT string = gptDeploymentName
-output AZURE_OPENAI_EMBEDDING_MODEL string = embeddingModelName
-output AZURE_OPENAI_EMBEDDING_DEPLOYMENT string = embeddingDeploymentName
+output AZURE_OPENAI_CHAT_MODEL string = azureOpenaiChatModel
+output AZURE_OPENAI_CHAT_DEPLOYMENT string = azureOpenaiChatDeployment
+output AZURE_OPENAI_EMBEDDING_MODEL string = azureOpenaiEmbeddingModel
+output AZURE_OPENAI_EMBEDDING_DEPLOYMENT string = azureOpenaiEmbeddingDeployment
