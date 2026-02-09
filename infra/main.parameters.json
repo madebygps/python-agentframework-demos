@@ -15,16 +15,16 @@
       "value": "${GITHUB_ACTIONS}"
     },
     "gptModelName": {
-      "value": "${AZURE_GPT_MODEL_NAME}"
+      "value": "${AZURE_OPENAI_CHAT_MODEL}"
     },
     "gptModelVersion": {
-      "value": "${AZURE_GPT_MODEL_VERSION}"
+      "value": "${AZURE_OPENAI_CHAT_MODEL_VERSION}"
     },
     "gptDeploymentName": {
-      "value": "${AZURE_GPT_DEPLOYMENT_NAME}"
+      "value": "${AZURE_OPENAI_CHAT_DEPLOYMENT}"
     },
     "gptDeploymentCapacity": {
-      "value": "${AZURE_GPT_DEPLOYMENT_CAPACITY}"
+      "value": "${AZURE_OPENAI_CHAT_DEPLOYMENT_CAPACITY}"
     }
   }
 }

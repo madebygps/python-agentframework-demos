@@ -39,7 +39,7 @@ elif API_HOST == "github":
     client = OpenAIChatClient(
         base_url="https://models.github.ai/inference",
         api_key=os.environ["GITHUB_TOKEN"],
-        model_id=os.getenv("GITHUB_MODEL", "openai/gpt-4o"),
+        model_id=os.getenv("GITHUB_MODEL", "openai/gpt-5-mini"),
     )
 elif API_HOST == "ollama":
     client = OpenAIChatClient(
@@ -48,7 +48,7 @@ elif API_HOST == "ollama":
         model_id=os.environ.get("OLLAMA_MODEL", "llama3.1:latest"),
     )
 else:
-    client = OpenAIChatClient(api_key=os.environ["OPENAI_API_KEY"], model_id=os.environ.get("OPENAI_MODEL", "gpt-4o"))
+    client = OpenAIChatClient(api_key=os.environ["OPENAI_API_KEY"], model_id=os.environ.get("OPENAI_MODEL", "gpt-5-mini"))
 
 # Initialize rich console
 console = Console()
