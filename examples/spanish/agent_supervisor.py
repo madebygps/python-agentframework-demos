@@ -51,8 +51,8 @@ else:
 
 
 def get_weather(
-    city: Annotated[str, Field(description="Ciudad para consultar el clima.")],
-    date: Annotated[str, Field(description="Fecha (YYYY-MM-DD) para la que se quiere el clima.")],
+    city: Annotated[str, Field(description="City to fetch the weather for.")],
+    date: Annotated[str, Field(description="Date (YYYY-MM-DD) to fetch the weather for.")],
 ) -> dict:
     """Devuelve datos meteorológicos para una ciudad y fecha dadas."""
     logger.info(f"Obteniendo el clima para {city} en {date}")
@@ -63,8 +63,8 @@ def get_weather(
 
 
 def get_activities(
-    city: Annotated[str, Field(description="Ciudad para consultar actividades.")],
-    date: Annotated[str, Field(description="Fecha (YYYY-MM-DD) para consultar actividades.")],
+    city: Annotated[str, Field(description="City to fetch activities for.")],
+    date: Annotated[str, Field(description="Date (YYYY-MM-DD) to fetch activities for.")],
 ) -> list[dict]:
     """Devuelve una lista de actividades para la ciudad y la fecha indicadas."""
     logger.info(f"Obteniendo actividades para {city} en {date}")
@@ -105,7 +105,7 @@ async def plan_weekend(query: str) -> str:
 
 
 def find_recipes(
-    query: Annotated[str, Field(description="Consulta del usuario o comida/ingrediente deseado")],
+    query: Annotated[str, Field(description="User query or desired meal/ingredient")],
 ) -> list[dict]:
     """Devuelve recetas (JSON) basadas en una consulta."""
     logger.info(f"Buscando recetas para '{query}'")
