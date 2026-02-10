@@ -1,4 +1,3 @@
-# pip install agent-framework-devui==1.0.0b251016
 import os
 from typing import Any
 
