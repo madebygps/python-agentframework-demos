@@ -14,25 +14,26 @@ from pydantic import Field
 from rich import print
 from rich.logging import RichHandler
 
-# Setup logging
+# Configura logging
 handler = RichHandler(show_path=False, rich_tracebacks=True, show_level=False)
 logging.basicConfig(level=logging.WARNING, handlers=[handler], force=True, format="%(message)s")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Configure OpenTelemetry export to the Aspire Dashboard (if endpoint is set)
+# Configura la exportación de OpenTelemetry al Aspire Dashboard (si el endpoint está configurado)
 otlp_endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
 if otlp_endpoint:
     os.environ.setdefault("OTEL_EXPORTER_OTLP_PROTOCOL", "grpc")
     os.environ.setdefault("OTEL_SERVICE_NAME", "agent-framework-demo")
     configure_otel_providers(enable_sensitive_data=True)
-    logger.info(f"OpenTelemetry export enabled — sending to {otlp_endpoint}")
+    logger.info(f"Exportación OpenTelemetry habilitada — enviando a {otlp_endpoint}")
 else:
     logger.info(
-        "Set OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317 in .env to export telemetry to the Aspire Dashboard"
+        "Configura OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317 en .env"
+        " para exportar telemetría al Aspire Dashboard"
     )
 
-# Configure OpenAI client based on environment
+# Configura el cliente para usar Azure OpenAI, GitHub Models u OpenAI
 load_dotenv(override=True)
 API_HOST = os.getenv("API_HOST", "github")
 
@@ -60,36 +61,38 @@ else:
 def get_weather(
     city: Annotated[str, Field(description="City name, spelled out fully")],
 ) -> dict:
-    """Returns weather data for a given city, a dictionary with temperature and description."""
-    logger.info(f"Getting weather for {city}")
+    """Devuelve datos meteorológicos para una ciudad: temperatura y descripción."""
+    logger.info(f"Obteniendo el clima para {city}")
     weather_options = [
-        {"temperature": 72, "description": "Sunny"},
-        {"temperature": 60, "description": "Rainy"},
-        {"temperature": 55, "description": "Cloudy"},
-        {"temperature": 45, "description": "Windy"},
+        {"temperature": 22, "description": "Soleado"},
+        {"temperature": 15, "description": "Lluvioso"},
+        {"temperature": 13, "description": "Nublado"},
+        {"temperature": 7, "description": "Ventoso"},
     ]
     return random.choice(weather_options)
 
 
 def get_current_time(
-    timezone_name: Annotated[str, Field(description="Timezone name, e.g. 'US/Eastern', 'Asia/Tokyo', 'UTC'")],
+    timezone_name: Annotated[
+        str, Field(description="Timezone name, e.g. 'US/Eastern', 'America/Mexico_City', 'UTC'")
+    ],
 ) -> str:
-    """Returns the current date and time in UTC (timezone_name is for display context only)."""
-    logger.info(f"Getting current time for {timezone_name}")
+    """Devuelve la fecha y hora actual en UTC (timezone_name es solo para contexto de visualización)."""
+    logger.info(f"Obteniendo la hora actual para {timezone_name}")
     now = datetime.now(timezone.utc)
-    return f"The current time in {timezone_name} is approximately {now.strftime('%Y-%m-%d %H:%M:%S')} UTC"
+    return f"La hora actual en {timezone_name} es aproximadamente {now.strftime('%Y-%m-%d %H:%M:%S')} UTC"
 
 
 agent = ChatAgent(
-    name="weather-time-agent",
+    name="agente-clima-hora",
     chat_client=client,
-    instructions="You are a helpful assistant that can look up weather and time information.",
+    instructions="Eres un asistente útil que puede consultar información del clima y la hora.",
     tools=[get_weather, get_current_time],
 )
 
 
 async def main():
-    response = await agent.run("What's the weather in Seattle and what time is it in Tokyo?")
+    response = await agent.run("¿Cómo está el clima en Ciudad de México y qué hora es en Buenos Aires?")
     print(response.text)
 
     if async_credential:
