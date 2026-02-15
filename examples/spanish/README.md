@@ -170,6 +170,8 @@ Puedes ejecutar los ejemplos en este repositorio ejecutando los scripts en el di
 | [workflow_magenticone.py](workflow_magenticone.py) | Usa Agent Framework para crear un flujo de trabajo multi-agente MagenticOne. |
 | [workflow_hitl.py](workflow_hitl.py) | Usa Agent Framework con human-in-the-loop (HITL) para confirmar o editar respuestas. |
 | [agent_middleware.py](agent_middleware.py) | Usa Agent Framework con middleware de agente, chat y funciones para registro, temporización y bloqueo. |
+| [agent_knowledge_sqlite.py](agent_knowledge_sqlite.py) | Recuperación de conocimiento (RAG) usando un proveedor de contexto personalizado con SQLite FTS5. |
+| [agent_knowledge_postgres.py](agent_knowledge_postgres.py) | Recuperación de conocimiento (RAG) con búsqueda híbrida en PostgreSQL (pgvector + texto completo) usando Reciprocal Rank Fusion. |
 | [agent_mcp_remote.py](agent_mcp_remote.py) | Un agente que usa un servidor MCP remoto (Microsoft Learn) para búsqueda de documentación. |
 | [agent_mcp_local.py](agent_mcp_local.py) | Un agente conectado a un servidor MCP local (ej. para registro de gastos). |
 | [openai_tool_calling.py](openai_tool_calling.py) | Llamadas a funciones con el SDK de OpenAI de bajo nivel, mostrando despacho manual de herramientas. |

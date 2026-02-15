@@ -179,6 +179,8 @@ You can run the examples in this repository by executing the scripts in the `exa
 | [workflow_magenticone.py](examples/workflow_magenticone.py) | A MagenticOne multi-agent workflow. |
 | [workflow_hitl.py](examples/workflow_hitl.py) | Human-in-the-loop (HITL) for tool-enabled agents with human feedback. |
 | [agent_middleware.py](examples/agent_middleware.py) | Agent, chat, and function middleware for logging, timing, and blocking. |
+| [agent_knowledge_sqlite.py](examples/agent_knowledge_sqlite.py) | Knowledge retrieval (RAG) using a custom context provider with SQLite FTS5. |
+| [agent_knowledge_postgres.py](examples/agent_knowledge_postgres.py) | Knowledge retrieval (RAG) with PostgreSQL hybrid search (pgvector + full-text) using Reciprocal Rank Fusion. |
 | [agent_mcp_remote.py](examples/agent_mcp_remote.py) | An agent using a remote MCP server (Microsoft Learn) for documentation search. |
 | [agent_mcp_local.py](examples/agent_mcp_local.py) | An agent connected to a local MCP server (e.g. for expense logging). |
 | [openai_tool_calling.py](examples/openai_tool_calling.py) | Tool calling with the low-level OpenAI SDK, showing manual tool dispatch. |
