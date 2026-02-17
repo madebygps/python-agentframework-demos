@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Configure OpenTelemetry export to Azure Application Insights
-# Set APPLICATIONINSIGHTS_CONNECTION_STRING in .env (run 'azd provision' or copy from the Azure Portal)
 load_dotenv(override=True)
 configure_azure_monitor(
     connection_string=os.environ["APPLICATIONINSIGHTS_CONNECTION_STRING"],
