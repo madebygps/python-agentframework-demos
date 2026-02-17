@@ -8,6 +8,7 @@ services:
     command: sleep infinity
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://aspire-dashboard:18889
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 
   db:
     image: pgvector/pgvector:pg17

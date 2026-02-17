@@ -200,7 +200,7 @@ The Aspire Dashboard runs automatically as a service alongside the dev container
 2. Run the example:
 
     ```sh
-    uv run agent_otel_aspire.py
+    uv run examples/agent_otel_aspire.py
     ```
 
 3. Open the dashboard at <http://localhost:18888> and explore:
